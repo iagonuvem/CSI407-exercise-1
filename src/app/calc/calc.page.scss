@@ -1,0 +1,13 @@
+.calculator{
+    .result-row{
+        min-height: 3rem;
+        ion-label{
+            font-size: 2rem;
+            font-weight: 200;
+            .result{
+                font-weight: 700;
+                color: var(--ion-color-success);
+            }
+        }
+    }
+}

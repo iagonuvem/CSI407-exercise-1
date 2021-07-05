@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Exercício 1.3 - Controle PIX</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-card-header>
+      <ion-card-title>Dados do Pix</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Tipo de Operacão</ion-label>
+        <ion-select [(ngModel)]="operationType" placeholder="Selecione">
+          <ion-select-option value="0">Envio</ion-select-option>
+          <ion-select-option value="1">Recebimento</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo de Chave</ion-label>
+        <ion-select [(ngModel)]="pixKeyType" placeholder="Selecione">
+          <ion-select-option value="cpf">CPF</ion-select-option>
+          <ion-select-option value="tel">Telefone</ion-select-option>
+          <ion-select-option value="email">Email</ion-select-option>
+          <ion-select-option value="random">Aleatória</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Banco Origem</ion-label>
+        <ion-select [(ngModel)]="bankFrom" placeholder="Selecione">
+          <ion-select-option *ngFor="let bank of banks" [value]="bank.name">{{bank.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Banco Destino</ion-label>
+        <ion-select [(ngModel)]="bankTo" placeholder="Selecione">
+          <ion-select-option *ngFor="let bank of banks" [value]="bank.name">{{bank.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Chave</ion-label>
+        <ion-input [(ngModel)]="pixKey" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Valor</ion-label>
+        <ion-input [(ngModel)]="amount" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-datetime [(ngModel)]="time" displayFormat="MMM DD, YYYY HH:mm" display-timezone="utc"></ion-datetime>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" fill="clear" (click)="save()" >Salvar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="block" color="success" expand="full" (click)="makeResult()" >Obter Balanco</ion-button>
+    <ion-item>
+      <ion-label>Total Enviado:</ion-label>
+      <ion-input [value]="totalSent" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Recebido:</ion-label>
+      <ion-input [value]="totalReceived" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Balanco Final:</ion-label>
+      <ion-input [value]="balance" type="number" readonly></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label><h1>Enviados/Recebidos</h1></ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let pix of pixList">
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <h2>
+            <ion-badge color="danger" *ngIf="pix.operationType == 0">Envio</ion-badge>
+            <ion-badge color="success" *ngIf="pix.operationType == 1">Recebimento</ion-badge>
+            <strong>{{ pix.amount | currency }}</strong>
+          </h2>
+          <p>De: {{pix.bankFrom}} Para: {{pix.bankTo}}</p>
+        </ion-text>
+        <p>Chave: ({{pix.pixKeyType}}) {{pix.pixKey}} </p>
+        <p>Data: {{pix.time}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

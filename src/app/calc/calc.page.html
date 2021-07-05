@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Exercicio 1.2 - Calculadora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="calculator">
+    <div class="row flex justify-content-center result-row">
+      <ion-label>{{leftOp}} {{operation}} {{rightOp}}  <span class="result" *ngIf="result != null">= {{result}}</span></ion-label>
+    </div>
+    <div class="row flex justify-content-center">
+      <ion-button color="primary" size="large" (click)="reset()">Limpar</ion-button>
+      <ion-button color="primary" size="large" (click)="selectOperation('/')">/</ion-button>
+      <ion-button color="primary" size="large" (click)="selectOperation('*')">*</ion-button>
+      <ion-button color="primary" size="large" (click)="selectOperation('-')">-</ion-button>
+      <ion-button color="primary" size="large" (click)="selectOperation('+')">+</ion-button>
+      <ion-button color="primary" size="large" (click)="getResult()">Resultado</ion-button>
+    </div>
+    <div class="row flex justify-content-center">
+      <ion-button color="primary" fill="outline" (click)="selectNumber(1)" size="large">1</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(2)" size="large">2</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(3)" size="large">3</ion-button>
+    </div>
+    <div class="row flex justify-content-center">
+      <ion-button color="primary" fill="outline" (click)="selectNumber(4)" size="large">4</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(5)" size="large">5</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(6)" size="large">6</ion-button>
+    </div>
+    <div class="row flex justify-content-center">
+      <ion-button color="primary" fill="outline" (click)="selectNumber(7)" size="large">7</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(8)" size="large">8</ion-button>
+      <ion-button color="primary" fill="outline" (click)="selectNumber(9)" size="large">9</ion-button>
+    </div>
+  </div>
+
+</ion-content>

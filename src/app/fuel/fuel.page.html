@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Exercício 1.4 - Controle Combustivel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label>Qtd. Combustivel(l):</ion-label>
+      <ion-input [(ngModel)]="liter" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Qtd. Kms rodados:</ion-label>
+      <ion-input [(ngModel)]="km" type="number"></ion-input>
+    </ion-item>
+  
+    <ion-button expand="block" fill="clear" (click)="save()" >Save</ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="block" color="success" expand="full" (click)="makeResult()" >Obter Resultados</ion-button>
+    <ion-item>
+      <ion-label>Qtd. Total Combustivel Utilizado(l):</ion-label>
+      <ion-input [value]="totalLiters" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Qtd. Total Kms rodados:</ion-label>
+      <ion-input [value]="totalKms" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Media Consumo:</ion-label>
+      <ion-input [value]="avgConsumption" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Media Km Rodados:</ion-label>
+      <ion-input [value]="avgRange" type="number" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Media Desempenho (km/l):</ion-label>
+      <ion-input [value]="avgBalance" type="number" readonly></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label><h1>Abastecimentos:</h1></ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let fuel of fuelList">
+      <ion-label class="ion-text-wrap">
+        <p>Qtd. Combustivel(l): {{fuel.liter}}</p>
+        <p>Qtd. Kms rodados: {{fuel.km}}</p>
+        <p>Desempenho(km/l): {{(fuel.km / fuel.liter)}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

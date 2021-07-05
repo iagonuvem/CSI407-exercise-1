@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Exercício 1.1 - Resultado Corrida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <ion-card class="ion-padding">
+    <ion-card-header>
+      <ion-card-title>Dados do Piloto</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Posicão de Largada</ion-label>
+        <ion-select [(ngModel)]="selectedPosition" placeholder="Selecione a posicão">
+          <ion-select-option *ngFor="let position of positionsArr" [value]="position.value">{{position.txt}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nome</ion-label>
+        <ion-input [(ngModel)]="currentName" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tempo (segundos)</ion-label>
+        <ion-input [(ngModel)]="currentTime" type="number"></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="primary" fill="clear" (click)="saveRacer()" [disabled]="selectedPosition == null" >Salvar</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="dark" (click)="makeResult()">
+    <ion-icon name="flag"></ion-icon> Apurar Resultados
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let racer of racers">
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <h2>Nome: {{racer.name}}</h2>
+        </ion-text>
+        <p>Largada: {{racer.positionTxt}}</p>
+        <ion-text color="secondary">
+          <p>Tempo (s): {{racer.time}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-label slot="end" color="success" *ngIf="racer.winner">
+        VENCEDOR! <ion-icon name="ribbon" color="success" slot="end"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
